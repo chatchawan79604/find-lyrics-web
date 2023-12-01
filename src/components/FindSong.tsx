@@ -101,22 +101,6 @@ function StreamAudioRecorder() {
       mediaRecorder.current.ondataavailable = (e) => {
         audioChunks.current.push(e.data);
 
-        /*
-        audioHandler([...audioChunks.current])
-          .then((resp) => {
-            console.log("ondataavailable::whole: done", resp.data.is_valid);
-          })
-          .catch((err) => {
-            setErrorMessage(err.message);
-          });
-
-        /*
-        speechToTextHandler([headerChunk.current, ...audioChunks.current]).then(
-          (resp) => {
-            console.log("ondataavailable::whole: done", resp.data);
-          }
-        );*/
-
         if (audioChunks.current.length < 4) return;
         speechToTextHandler(
           [
@@ -159,6 +143,7 @@ function StreamAudioRecorder() {
   }, []);
 
   return (
+
     <div className=" relative w-full">
       <button className=" absolute top-0 left-0" onClick={startRecording}>
         Start
@@ -170,11 +155,13 @@ function StreamAudioRecorder() {
         {errorMessage && <div className=" text-red-500">{errorMessage}</div>}
       </div>
       <div>
-        {lyrics.map((lyric, i) => (
+        {/* i want to show lyric in song */}
+        {}
+        {/* {lyrics.map((lyric, i) => (
           <div key={i}>
             {lyric.timestamp} - {lyric.line}
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
